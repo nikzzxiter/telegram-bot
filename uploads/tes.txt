@@ -1,0 +1,105 @@
+# Termux Compilation Tutorial
+
+This guide will help you compile the Free Fire Gaming Assistant on Android using Termux.
+
+## Prerequisites
+
+1. Install Termux from the Google Play Store or F-Droid
+2. Make sure your Free Fire game (MAX or TH) is installed
+
+## Setup Termux
+
+1. Open Termux and run the following commands:
+
+```bash
+# Update package repositories
+pkg update
+
+# Install required packages
+pkg install clang make git libandroid-shmem libandroid-glob
+
+# Install the NDK compilation tools
+pkg install binutils libandroid-support
+
+# Create a directory for your project
+mkdir -p ~/freefire-assistant
+cd ~/freefire-assistant
+```
+
+## Saving the Code
+
+1. Copy the code from the artifact to your phone
+2. Create a new file in Termux:
+
+```bash
+nano main.c
+```
+
+3. Paste the code and save (Ctrl+X, then Y, then Enter)
+
+## Compiling the Code
+
+```bash
+# Compile the code
+clang -o freeFire-assistant SNITZFREE.c -lm -landroid-shmem -landroid-glob
+
+# Make it executable
+chmod +x freeFire-assistant
+```
+
+## Running the Assistant
+
+Before running, make sure Free Fire is already open on your device:
+
+```bash
+# For Free Fire MAX
+./freeFire-assistant max
+
+# For Free Fire TH
+./freeFire-assistant th
+```
+
+## Troubleshooting Compilation Errors
+
+If you encounter compilation errors, try these solutions:
+
+### Missing Android Headers
+
+```bash
+pkg install libandroid-devel
+```
+
+### Missing Math Library
+
+```bash
+pkg install libandroid-support-dev
+```
+
+### Permission Denied
+
+If you get "Permission denied" when running:
+
+```bash
+termux-setup-storage
+```
+
+This will request storage permission for Termux.
+
+## Important Notes
+
+1. This assistant uses non-root methods to enhance your gameplay experience
+2. The code simulates data collection as actual memory access requires root
+3. In a non-root environment, the assistant provides visual cues based on screen analysis
+4. The application runs in userspace and does not modify any game files
+
+## Keeping the Assistant Updated
+
+Since game updates might change memory locations, you may need to update the offsets in the code:
+
+```c
+// Update these values if the game updates
+#define PLAYER_POS_OFFSET 0x1800000
+#define ENEMY_POS_OFFSET 0x1900000
+```
+
+Make sure to check for updates regularly for compatibility with the latest game versions.
