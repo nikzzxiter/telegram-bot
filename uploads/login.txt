@@ -1,0 +1,192 @@
+dialog = new AlertDialog.Builder(LoginActivity.this,AlertDialog.THEME_DEVICE_DEFAULT_DARK);
+if (binding.usuario.getText().toString().equals("")) {
+	SketchwareUtil.showMessage(getApplicationContext(), "Fill in the User");
+}
+else {
+	if (binding.senha.getText().toString().equals("")) {
+		SketchwareUtil.showMessage(getApplicationContext(), "fill in the password");
+	}
+	else {
+		_loadingdialog(true, "Searching the Database");
+		timer = new TimerTask() {
+			@Override
+			public void run() {
+				runOnUiThread(new Runnable() {
+					@Override
+					public void run() {
+						_loadingdialog(false, "");
+						id = android.os.Build.FINGERPRINT;
+						usuarios.addListenerForSingleValueEvent(new ValueEventListener() {
+							@Override
+							public void onDataChange(DataSnapshot _dataSnapshot) {
+								lista = new ArrayList<>();
+								try {
+									GenericTypeIndicator<HashMap<String, Object>> _ind = new GenericTypeIndicator<HashMap<String, Object>>() {};
+									for (DataSnapshot _data : _dataSnapshot.getChildren()) {
+										HashMap<String, Object> _map = _data.getValue(_ind);
+										lista.add(_map);
+									}
+								}
+								catch (Exception _e) {
+									_e.printStackTrace();
+								}
+								if (str.contains(binding.usuario.getText().toString())) {
+									pos = 0;
+									for(int _repeat30 = 0; _repeat30 < (int)(lista.size()); _repeat30++) {
+										if (lista.get((int)pos).get("usuario").toString().equals(binding.usuario.getText().toString())) {
+											if (lista.get((int)pos).get("senha").toString().equals(binding.senha.getText().toString())) {
+												if (lista.get((int)pos).get("status").toString().equals("desativado")) {
+													SketchwareUtil.showMessage(getApplicationContext(), "Key Sudah Digunakan");
+													finish();
+												}
+												else {
+													if (lista.get((int)pos).get("app_uid").toString().equals("appUID")) {
+														c2 = Calendar.getInstance();
+														c1.set(Calendar.DAY_OF_MONTH, (int)(Double.parseDouble(lista.get((int)pos).get("dia").toString())));
+														c1.set(Calendar.MONTH, (int)(Double.parseDouble(lista.get((int)pos).get("mes").toString())));
+														c1.set(Calendar.YEAR, (int)(Double.parseDouble(lista.get((int)pos).get("ano").toString())));
+														_calculate_days(c1, c2);
+														if (String.valueOf((long)(days_num + 1)).equals("0")) {
+															SketchwareUtil.showMessage(getApplicationContext(), "Login expired.");
+															mapa = new HashMap<>();
+															mapa.put("usuario", binding.usuario.getText().toString());
+															mapa.put("senha", binding.senha.getText().toString());
+															mapa.put("status", "ativo");
+															mapa.put("vendedor", lista.get((int)pos).get("vendedor").toString());
+															mapa.put("id", lista.get((int)pos).get("id").toString());
+															mapa.put("dia", lista.get((int)pos).get("dia").toString());
+															mapa.put("mes", lista.get((int)pos).get("mes").toString());
+															mapa.put("ano", lista.get((int)pos).get("ano").toString());
+															mapa.put("rgt", lista.get((int)pos).get("rgt").toString());
+															mapa.put("hora", lista.get((int)pos).get("hora").toString());
+															mapa.put("verificar", "0");
+															usuarios.child(binding.usuario.getText().toString()).updateChildren(mapa);
+															mapa.clear();
+														}
+														else {
+															if (lista.get((int)pos).get("app_uid").toString().equals("")) {
+																mapa = new HashMap<>();
+																mapa.put("id", "id");
+																mapa.put("app_uid", "appUID");
+																usuarios.child(binding.usuario.getText().toString()).updateChildren(mapa);
+																id_num = 0;
+																if (lista.get((int)pos).get("id").toString().equals(id)) {
+																	id_num = 1;
+																}
+																else {
+																	id_num = 0;
+																}
+																mapa = new HashMap<>();
+																mapa.put("id", id);
+																usuarios.child(binding.usuario.getText().toString()).updateChildren(mapa);
+																mapa.clear();
+																KONNAN_TEAM.putExtra("usuario", binding.usuario.getText().toString());
+																KONNAN_TEAM.putExtra("status", "ativo");
+																KONNAN_TEAM.putExtra("vendedor", lista.get((int)pos).get("vendedor").toString());
+																KONNAN_TEAM.putExtra("dia", lista.get((int)pos).get("dia").toString());
+																KONNAN_TEAM.putExtra("mes", lista.get((int)pos).get("mes").toString());
+																KONNAN_TEAM.putExtra("ano", lista.get((int)pos).get("ano").toString());
+																KONNAN_TEAM.putExtra("rgt", lista.get((int)pos).get("rgt").toString());
+																KONNAN_TEAM.putExtra("hora", lista.get((int)pos).get("hora").toString());
+																KONNAN_TEAM.putExtra("antcracked", "ativado");
+																Salvar.edit().putString("antcrackedL", "ativado").commit();
+																iOSDarkBuilder Red_Zone = new iOSDarkBuilder(LoginActivity.this);
+																Red_Zone
+																.setTitle("Key Information !")
+																.setSubtitle("User: ".concat(binding.usuario.getText().toString()).concat("\nCreated Date: ".concat(lista.get((int)pos).get("rgt").toString().concat(" ".concat(lista.get((int)pos).get("hora").toString().concat("\nExpired: ".concat(lista.get((int)pos).get("dia").toString().concat("/".concat(lista.get((int)pos).get("mes").toString().concat("/".concat(lista.get((int)pos).get("ano").toString().concat("\nSeller: ".concat(lista.get((int)pos).get("vendedor").toString().concat("\nStatus: ".concat("active")))))))))))))).concat("")) 	
+																.setBoldPositiveLabel(true)
+																.setPositiveListener("Continue",new iOSDarkClickListener() 
+																{ 	 @Override 	 public void onClick(iOSDark dialog) { 		
+																		_NikzzHome();
+																		finish();	 
+																	}
+																})	
+																.build().show();
+															}
+															else {
+																if (lista.get((int)pos).get("id").toString().equals("trial")) {
+																	Salvar.edit().putString("antcrackedL", "ativado").commit();
+																	KONNAN_TEAM.putExtra("usuario", binding.usuario.getText().toString());
+																	KONNAN_TEAM.putExtra("status", "ativo");
+																	KONNAN_TEAM.putExtra("vendedor", lista.get((int)pos).get("vendedor").toString());
+																	KONNAN_TEAM.putExtra("dia", lista.get((int)pos).get("dia").toString());
+																	KONNAN_TEAM.putExtra("mes", lista.get((int)pos).get("mes").toString());
+																	KONNAN_TEAM.putExtra("ano", lista.get((int)pos).get("ano").toString());
+																	KONNAN_TEAM.putExtra("rgt", lista.get((int)pos).get("rgt").toString());
+																	KONNAN_TEAM.putExtra("hora", lista.get((int)pos).get("hora").toString());
+																	KONNAN_TEAM.putExtra("antcracked", "ativado");
+																	iOSDarkBuilder Red_Zone = new iOSDarkBuilder(LoginActivity.this);
+																	Red_Zone
+																	.setTitle("Key Information !")
+																	.setSubtitle("User: ".concat(binding.usuario.getText().toString()).concat("\nCreated Date: ".concat(lista.get((int)pos).get("rgt").toString().concat(" ".concat(lista.get((int)pos).get("hora").toString().concat("\nExpired: ".concat(lista.get((int)pos).get("dia").toString().concat("/".concat(lista.get((int)pos).get("mes").toString().concat("/".concat(lista.get((int)pos).get("ano").toString().concat("\nSeller: ".concat(lista.get((int)pos).get("vendedor").toString().concat("\nStatus: ".concat("active")))))))))))))).concat("")) 	
+																	.setBoldPositiveLabel(true)
+																	.setPositiveListener("Continue",new iOSDarkClickListener() 
+																	{ 	 @Override 	 public void onClick(iOSDark dialog) { 		
+																			_NikzzHome();
+																			finish();	 
+																		}
+																	})	
+																	.build().show();
+																}
+																else {
+																	if (id.equals(lista.get((int)pos).get("id").toString())) {
+																		Salvar.edit().putString("antcrackedL", "ativado").commit();
+																		KONNAN_TEAM.putExtra("usuario", binding.usuario.getText().toString());
+																		KONNAN_TEAM.putExtra("status", "ativo");
+																		KONNAN_TEAM.putExtra("vendedor", lista.get((int)pos).get("vendedor").toString());
+																		KONNAN_TEAM.putExtra("dia", lista.get((int)pos).get("dia").toString());
+																		KONNAN_TEAM.putExtra("mes", lista.get((int)pos).get("mes").toString());
+																		KONNAN_TEAM.putExtra("ano", lista.get((int)pos).get("ano").toString());
+																		KONNAN_TEAM.putExtra("rgt", lista.get((int)pos).get("rgt").toString());
+																		KONNAN_TEAM.putExtra("hora", lista.get((int)pos).get("hora").toString());
+																		KONNAN_TEAM.putExtra("antcracked", "ativado");
+																		iOSDarkBuilder Red_Zone = new iOSDarkBuilder(LoginActivity.this);
+																		Red_Zone
+																		.setTitle("Key Information !")
+																		.setSubtitle("User: ".concat(binding.usuario.getText().toString()).concat("\nCreated Date: ".concat(lista.get((int)pos).get("rgt").toString().concat(" ".concat(lista.get((int)pos).get("hora").toString().concat("\nExpired: ".concat(lista.get((int)pos).get("dia").toString().concat("/".concat(lista.get((int)pos).get("mes").toString().concat("/".concat(lista.get((int)pos).get("ano").toString().concat("\nSeller: ".concat(lista.get((int)pos).get("vendedor").toString().concat("\nStatus: ".concat("active")))))))))))))).concat("")) 	
+																		.setBoldPositiveLabel(true)
+																		.setPositiveListener("Continue",new iOSDarkClickListener() 
+																		{ 	 @Override 	 public void onClick(iOSDark dialog) { 		
+																				_NikzzHome();
+																				finish();	 
+																			}
+																		})	
+																		.build().show();
+																	}
+																	else {
+																		SketchwareUtil.showMessage(getApplicationContext(), "Device Tidak Dikenal!");
+																	}
+																}
+															}
+														}
+													}
+													else {
+														SketchwareUtil.showMessage(getApplicationContext(), "Key Sudah Digunakan Sebelumnya");
+														finish();
+													}
+												}
+											}
+											else {
+												SketchwareUtil.showMessage(getApplicationContext(), "Incorrect password!");
+											}
+										}
+										else {
+											pos++;
+										}
+									}
+								}
+								else {
+									SketchwareUtil.showMessage(getApplicationContext(), "Incorrect username or password!");
+								}
+							}
+							@Override
+							public void onCancelled(DatabaseError _databaseError) {
+							}
+						});
+					}
+				});
+			}
+		};
+		_timer.schedule(timer, (int)(2000));
+	}
+}
