@@ -1,0 +1,42 @@
+{
+  "compilation_date": "2025-06-18T23:31:37.213695",
+  "best_strategy": {
+    "name": "\ud83d\udd25 ULTRA PERFORMANCE - g++",
+    "compiler": "g++",
+    "flags": [
+      "-Ofast",
+      "-march=native",
+      "-mtune=native",
+      "-flto",
+      "-std=c++20",
+      "-DNDEBUG",
+      "-funroll-loops",
+      "-ffast-math"
+    ],
+    "priority": 10
+  },
+  "alternative_strategies": [
+    {
+      "name": "\ud83d\udd25 ULTRA PERFORMANCE - g++",
+      "compiler": "g++",
+      "size": 22064
+    },
+    {
+      "name": "\u26a1 AGGRESSIVE OPT - g++",
+      "compiler": "g++",
+      "size": 58160
+    },
+    {
+      "name": "\ud83c\udfaf SIZE OPTIMIZED - g++",
+      "compiler": "g++",
+      "size": 14616
+    },
+    {
+      "name": "\ud83d\udd25 ULTRA PERFORMANCE - clang++",
+      "compiler": "clang++",
+      "size": 22064
+    }
+  ],
+  "file_size": 15736,
+  "system_info": "Linux-5.10.209-android12-9-00016-g7c6bbcca33e1-ab12029497-aarch64-with-libc"
+}
