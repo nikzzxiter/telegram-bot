@@ -1,0 +1,42 @@
+{
+  "compilation_date": "2025-06-20T10:49:49.733172",
+  "best_strategy": {
+    "name": "ADVENCED - g++",
+    "compiler": "g++",
+    "flags": [
+      "-Ofast",
+      "-march=native",
+      "-mtune=native",
+      "-flto",
+      "-std=c++20",
+      "-DNDEBUG",
+      "-funroll-loops",
+      "-ffast-math"
+    ],
+    "priority": 10
+  },
+  "alternative_strategies": [
+    {
+      "name": "ADVENCED - g++",
+      "compiler": "g++",
+      "size": 10672
+    },
+    {
+      "name": "\u26a1 AGGRESSIVE OPT - g++",
+      "compiler": "g++",
+      "size": 47408
+    },
+    {
+      "name": "\ud83c\udfaf SIZE OPTIMIZED - g++",
+      "compiler": "g++",
+      "size": 7784
+    },
+    {
+      "name": "ADVENCED - clang++",
+      "compiler": "clang++",
+      "size": 10672
+    }
+  ],
+  "file_size": 7792,
+  "system_info": "Linux-5.10.209-android12-9-00016-g7c6bbcca33e1-ab12029497-aarch64-with-libc"
+}
