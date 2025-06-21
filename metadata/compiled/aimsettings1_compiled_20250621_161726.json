@@ -1,0 +1,43 @@
+{
+  "compilation_date": "2025-06-21T16:17:26.191657",
+  "best_strategy": {
+    "name": "\ud83d\udccb COMPAT C2X -O3 - gcc",
+    "compiler": "gcc",
+    "flags": [
+      "-O3",
+      "-std=c2x",
+      "-Wall",
+      "-Wextra"
+    ],
+    "priority": 0
+  },
+  "alternative_strategies": [
+    {
+      "name": "\ud83d\udccb COMPAT C2X -O3 - gcc",
+      "compiler": "gcc",
+      "size": 60152
+    },
+    {
+      "name": "\ud83d\udccb COMPAT C17 -O2 - gcc",
+      "compiler": "gcc",
+      "size": 57176
+    },
+    {
+      "name": "\ud83d\udccb COMPAT C11 -Os - gcc",
+      "compiler": "gcc",
+      "size": 50040
+    },
+    {
+      "name": "\ud83d\udccb COMPAT C11 -Og - gcc",
+      "compiler": "gcc",
+      "size": 57304
+    },
+    {
+      "name": "\ud83d\udccb COMPAT C99 -O3 - gcc",
+      "compiler": "gcc",
+      "size": 57176
+    }
+  ],
+  "file_size": 41128,
+  "system_info": "Linux-5.10.209-android12-9-00016-g7c6bbcca33e1-ab12029497-aarch64-with-libc"
+}
