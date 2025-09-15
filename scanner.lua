@@ -2,8 +2,8 @@
 local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "Fish It Scanner | Nikzz",
-   LoadingTitle = "Fish It Dump Tool",
+   Name = "ROBLOX Scanner | Nikzz",
+   LoadingTitle = "ROBLOX Dump Tool",
    LoadingSubtitle = "By Nikzz",
    ConfigurationSaving = { Enabled = false }
 })
